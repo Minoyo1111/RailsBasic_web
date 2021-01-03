@@ -7,7 +7,7 @@ class MoviegroupsController < ApplicationController
     @moviegroup = Moviegroup.new
   end
 
-  def deit
+  def edit
     @moviegroup = Moviegroup.find(params[:id])
   end
 

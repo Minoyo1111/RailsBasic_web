@@ -14,7 +14,7 @@
       <% @moviegroups.each do |moviegroup| %>
         <tr>
           <td>#</td>
-          <td><%= link_to(group.title, moviegroup_path(moviegroup)) %></td>
+          <td><%= link_to(moviegroup.title, moviegroup_path(moviegroup)) %></td>
           <td><%= moviegroup.description %></td>
           <td>
               <%= link_to("Edit", edit_moviegroup_path(moviegroup), class: "btn btn-sm btn-default")%>

@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   resources :moviegroups
-  root 'welcome#index'
+  root 'moviegroups#index'
 end
