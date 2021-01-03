@@ -12,7 +12,7 @@
   <body>
     <div class="container-fluid">
       <%= render "common/navbar" %>
-      <%= render "common/flashes" %>
+      <%= render "common/flashs" if flash[:notice] %>
       <%= yield %>
   </div>
   <%= render "common/footer" %>
