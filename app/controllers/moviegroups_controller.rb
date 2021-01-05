@@ -1,5 +1,5 @@
 class MoviegroupsController < ApplicationController
-  before_action :authenticate_user! , only: [:new, :create]
+  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
   def index
     @moviegroups = Moviegroup.all
   end
@@ -10,6 +10,9 @@ class MoviegroupsController < ApplicationController
 
   def edit
     @moviegroup = Moviegroup.find(params[:id])
+    if current_user != @group.user
+      redirect_to root_path, alert: "你不能進來喔！"
+    end
   end
 
   def show
@@ -27,6 +30,9 @@ class MoviegroupsController < ApplicationController
   end 
   def update
     @moviegroup = Moviegroup.find(params[:id])
+    if current_user != @group.user
+      redirect_to root_path, alert: "你不能進來喔！"
+    end
     if @moviegroup.update(moviegroup_params)
       redirect_to moviegroups_path, notice: '更新成功'
     else
@@ -35,6 +41,11 @@ class MoviegroupsController < ApplicationController
   end
   def destroy
     @moviegroup = Moviegroup.find(params[:id])
+
+    if current_user != @group.user
+      redirect_to root_path, alert: "你不能進來喔！"
+    end
+    
     @moviegroup.destroy
     redirect_to moviegroups_path, notice: '已刪除'
   end
