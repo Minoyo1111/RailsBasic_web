@@ -8,6 +8,7 @@
         <td>#</td>
         <td>Title</td>
         <td>Description</td>
+        <td>Creator </td>
       </tr>
     </thead>
     <tbody>
@@ -16,10 +17,13 @@
           <td>#</td>
           <td><%= link_to(moviegroup.title, moviegroup_path(moviegroup)) %></td>
           <td><%= moviegroup.description %></td>
+          <td> <%= moviegroup.user.email %> </td>
           <td>
+            <% if current_user && current_user == moviegroup.user %>
               <%= link_to("Edit", edit_moviegroup_path(moviegroup), class: "btn btn-sm btn-default")%>
               <%= link_to("Delete", moviegroup_path(moviegroup),    class: "btn btn-sm btn-default", 
                           method: :delete, data: { confirm: "Are you sure?" } )%>
+            <% end %>
           </td>
         </tr>
       <% end %>
