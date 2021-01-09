@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_141300) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
-    t.integer "group_id"
+    t.integer "moviegroup_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

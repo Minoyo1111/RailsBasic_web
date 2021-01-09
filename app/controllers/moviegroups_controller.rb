@@ -17,6 +17,7 @@ class MoviegroupsController < ApplicationController
 
   def show
     @moviegroup = Moviegroup.find(params[:id])
+    @posts = @moviegroup.posts.order("created_at DESC")
   end
 
   def create
@@ -42,7 +43,7 @@ class MoviegroupsController < ApplicationController
   def destroy
     @moviegroup = Moviegroup.find(params[:id])
 
-    if current_user != @group.user
+    if current_user != @moviegroup.user
       redirect_to root_path, alert: "你不能進來喔！"
     end
     @moviegroup.destroy
