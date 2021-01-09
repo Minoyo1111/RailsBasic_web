@@ -45,7 +45,6 @@ class MoviegroupsController < ApplicationController
     if current_user != @group.user
       redirect_to root_path, alert: "你不能進來喔！"
     end
-    
     @moviegroup.destroy
     redirect_to moviegroups_path, notice: '已刪除'
   end
