@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :moviegroups
   root 'moviegroups#index'
+  devise_for :users
+  resources :moviegroups do
+    resources :posts
+  end
+  
 end
