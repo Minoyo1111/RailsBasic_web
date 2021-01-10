@@ -10,14 +10,14 @@ class MoviegroupsController < ApplicationController
 
   def edit
     @moviegroup = Moviegroup.find(params[:id])
-    if current_user != @group.user
+    if current_user != @moviegroup.user
       redirect_to root_path, alert: "你不能進來喔！"
     end
   end
 
   def show
     @moviegroup = Moviegroup.find(params[:id])
-    @posts = @moviegroup.posts.order("created_at DESC")
+    @posts = @moviegroup.posts.recent.paginate(page: params[:page], per_page: 5)
   end
 
   def create
@@ -31,7 +31,7 @@ class MoviegroupsController < ApplicationController
   end 
   def update
     @moviegroup = Moviegroup.find(params[:id])
-    if current_user != @group.user
+    if current_user != @moviegroup.user
       redirect_to root_path, alert: "你不能進來喔！"
     end
     if @moviegroup.update(moviegroup_params)
